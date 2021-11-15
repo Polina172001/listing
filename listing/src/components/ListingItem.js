@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 const ListingItem = (props) => {
     const {url, img, title, currencyCode, price, quantity} = props
 
     let formatCode = currencyCode
-    if (formatCode === 'USD') formatCode = '$'
-    if (formatCode === 'EUR') formatCode = '€'
+    if (currencyCode === 'USD') formatCode = '$'
+    if (currencyCode === 'EUR') formatCode = '€'
     formatCode += ` ${price}`
     
     let formatTitle = title.length > 50 ? title.slice(0, 50).concat('...') : title
@@ -18,7 +19,7 @@ const ListingItem = (props) => {
         <div className="item">
             <div className="item-image">
                 <a href={url}>
-                    <img src={img.url_570xN} />
+                    <img src={img.url_570xN} alt="icon"/>
                 </a>
             </div>
             <div className="item-details">
@@ -39,4 +40,12 @@ ListingItem.defaultProps = {
     quantity: 0,
 }
 
+ListingItem.propTypes = {
+    url:PropTypes.string,
+    img:PropTypes.string,
+    title:PropTypes.string,
+    currencyCode:PropTypes.string,
+    price:PropTypes.string,
+    quantity:PropTypes.number,
+}
 export default ListingItem
